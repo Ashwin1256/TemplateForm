@@ -1,26 +1,69 @@
-<form #userForm="ngForm"> 
-      {{userForm.value | json}}
+<form #userForm="ngForm"   (ngSubmit)="onSubmit(userForm.value)"  style="width: 800px; height: 800px; margin-left: 80px; margin-top:10px">
 
-  <fieldset style="height: 200px; width: 400px;margin-left: 10cm; margin-top: 20px;">
-    <legend>User Registration</legend>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" name="exampleInputEmail1"  placeholder="Enter email" ngModel>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" name="exampleInputPassword1" placeholder="Password" ngModel>
+
+
+  {{userForm.value | json}}
+  {{userForm.form.invalid}}
+
+  <div class="form-group mb-2 mt-2">
+    <label for="Inputname">Name</label>
+    <input id="Inputname" type="text" class="form-control" name="InputName" placeholder="Enter name" ngModel required>
   </div>
 
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" name="exampleCheck1" ngModel>
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  <div class="form-group mb-2">
+    <label for="InputEmail1">Email address</label>
+    <input type="email" class="form-control" name="InputEmail1" id="InputEmail1" placeholder="Enter email" ngModel>
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </fieldset>
+  <div class="form-group mb-2">
+    <label for="inputTelephone"> Enter TelePhone</label>
+    <input type="tel" class="form-control" name="InputTelephone" id="inputTelephone" placeholder="Telephone" ngModel>
+  </div>
+
+
+
+  <div  ngModelGroup="sports" #fvsp="ngModelGroup">
+
+  <div class="mb-2 mt-2">
+    Favourate sport:
+  </div>
+  <div class="form-check ">
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"  name="spradio1" value="cricket" ngModel>
+    <label class="form-check-label" for="inlineCheckbox1">cricket</label>
+  </div>
+  <div class="form-check ">
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="spradio2" value="football" ngModel>
+    <label class="form-check-label" for="inlineCheckbox2">football</label>
+  </div>
+
+</div>
+
+  <div class="mt-2">
+    Gender:&nbsp;
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="male" ngModel>
+    <label class="form-check-label" for="inlineRadio1">male</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="female" ngModel>
+    <label class="form-check-label" for="inlineRadio2">female</label>
+  </div>
+    
+  <br>
+  Enter Transport
+  <select name="tran" ngModel>
+    
+    <option value="" disabled selected> Enter Transport</option>
+    <option *ngFor="let tr of transportation" selected>{{tr}}</option>
+  </select>
+  
+
+  <div class="mt-2">
+    <button type="submit" class="btn btn-primary" [disabled]="userForm.form.invalid">Submit</button>
+
+  </div>
+
 </form>
- 
 
 <router-outlet></router-outlet>
