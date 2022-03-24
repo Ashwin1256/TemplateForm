@@ -3,16 +3,17 @@
 
 
   {{userForm.value | json}}
-  {{userForm.form.invalid}}
+
 
   <div class="form-group mb-2 mt-2">
     <label for="Inputname">Name</label>
-    <input id="Inputname" type="text" class="form-control" name="InputName" placeholder="Enter name" ngModel required>
+    <input  #iname="ngModel"  id="Inputname" type="text" [class.is-invalid]="iname.touched && iname.invalid" class="form-control"  name="InputName" placeholder="Enter name" ngModel required>
+    <small class="text-danger"   [class.d-none]="iname.untouched || iname.valid">please enter your name</small>
   </div>
 
   <div class="form-group mb-2">
     <label for="InputEmail1">Email address</label>
-    <input type="email" class="form-control" name="InputEmail1" id="InputEmail1" placeholder="Enter email" ngModel>
+    <input type="email"  class="form-control " name="InputEmail1" id="InputEmail1" placeholder="Enter email" ngModel>
   </div>
 
   <div class="form-group mb-2">
@@ -52,12 +53,15 @@
     
   <br>
   Enter Transport
-  <select name="tran" ngModel>
-    
-    <option value="" disabled selected> Enter Transport</option>
+
+   <div class="'form-group">
+  <select #tran="ngModel"   (blur)= "validate(tran.value)" (change)="validate(tran.value)" name="tran" ngModel>  
+    <option    value="" disabled selected  required> Enter Transport</option>
     <option *ngFor="let tr of transportation" selected>{{tr}}</option>
+    
   </select>
-  
+  <small class="text-danger" [class.d-none]="!check">Please select other option </small>
+   </div>
 
   <div class="mt-2">
     <button type="submit" class="btn btn-primary" [disabled]="userForm.form.invalid">Submit</button>
