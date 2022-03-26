@@ -3,12 +3,13 @@
 
 
   {{userForm.value | json}}
-
+ {{userForm.invalid}}
 
   <div class="form-group mb-2 mt-2">
     <label for="Inputname">Name</label>
-    <input  #iname="ngModel"  id="Inputname" type="text" [class.is-invalid]="iname.touched && iname.invalid" class="form-control"  name="InputName" placeholder="Enter name" ngModel required>
-    <small class="text-danger"   [class.d-none]="iname.untouched || iname.valid">please enter your name</small>
+    <input  #iname="ngModel"  id="Inputname"  required  appValidator type="text" [class.is-invalid]="iname.touched && iname.invalid" class="form-control"  name="InputName" placeholder="Enter name" ngModel  >
+    <small class="text-danger"   *ngIf="iname.touched && iname.errors?.required">please enter your name</small>
+    <small class="text-danger"   *ngIf="iname.errors?.forbiddenname">{{iname.errors?.forbiddenname.value}} this is not allowed use another name</small>
   </div>
 
   <div class="form-group mb-2">
@@ -70,4 +71,3 @@
 
 </form>
 
-<router-outlet></router-outlet>

@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule, routingcomponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StudentlistComponent } from './studentlist/studentlist.component';
+import { ValidatorDirective } from './validator.directive';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentlistComponent,
-    routingcomponents
+    ValidatorDirective,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule
   ],
   providers: [],
